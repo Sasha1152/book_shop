@@ -6,7 +6,7 @@ from .models import Author
 
 def get_authors_list(request):
     authors_list = Author.objects.all()
-    output = (', ').join([i.title for i in authors_list])
+    output = (' | ').join(i.first_name for i in authors_list)
     return HttpResponse(output)
 
 
@@ -26,7 +26,7 @@ def delete_author(request):
         return HttpResponse(f'Sorry, but author where id={data["id"]} does not exist')
 
 
-def show_author(request):
+def get_author(request):
     data = json.loads(request.body)
     try:
         author = Author.objects.get(id=data['id'])

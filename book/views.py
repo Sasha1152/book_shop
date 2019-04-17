@@ -6,7 +6,7 @@ from .models import Book
 
 def get_books_list(request):
     books_list = Book.objects.all()
-    output = (', ').join([i.title for i in books_list])
+    output = (' | ').join(i.title for i in books_list)
     return HttpResponse(output)
 
 
@@ -26,7 +26,7 @@ def delete_book(request):
         return HttpResponse(f'Sorry, but book where id={data["id"]} does not exist')
 
 
-def show_book(request):
+def get_book(request):
     data = json.loads(request.body)
     try:
         book = Book.objects.get(id=data['id'])

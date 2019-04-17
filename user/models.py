@@ -7,8 +7,8 @@ class User(models.Model):
 	email = models.EmailField()
 	password = models.CharField(max_length=32)
 	phone_number = models.CharField(blank=True, max_length=16)
-	wallet = models.DecimalField(max_digits=6, decimal_places=2)
-	image = models.ForeignKey(Image, on_delete=models.CASCADE)
+	wallet = models.DecimalField(max_digits=6, decimal_places=2, default=0)
+	image = models.ForeignKey(Image, on_delete=models.CASCADE, null=True)
 
 	def __str__(self):
 		return self.email

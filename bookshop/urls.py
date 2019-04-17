@@ -20,4 +20,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('book/', include('book.urls')),
     path('author/', include('author.urls')),
+    path('genre/', include('genre.urls')),
+    path('order/', include('order.urls')),
+    path('suborder/', include('suborder.urls')),
+    path('user/', include('user.urls')),
+    path('image/', include('image.urls')),
 ]
