@@ -1,8 +1,7 @@
 from django.db import models
-from utils.abstract_model import AbstractModel
 from image.models import Image
 
-class User(AbstractModel):
+class User(models.Model):
 	first_name = models.CharField(max_length=64, blank=True)
 	last_name = models.CharField(max_length=64, blank=True)
 	email = models.EmailField()

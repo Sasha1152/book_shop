@@ -1,9 +1,8 @@
 from django.db import models
-from utils.abstract_model import AbstractModel
 from book.models import Book
 from order.models import Order
 
-class Suborder(AbstractModel):
+class Suborder(models.Model):
 
 	quantity = models.PositiveSmallIntegerField(max_length=2)
 	is_returned = models.BooleanField()

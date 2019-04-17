@@ -1,6 +1,7 @@
 from django.db import models
-from utils.abstract_model import AbstractModel
+from book.models import Book
 
 
-class Genre(AbstractModel):
+class Genre(models.Model):
 	name = models.CharField(max_length=64, blank=True)
+	book = models.ManyToManyField(Book)

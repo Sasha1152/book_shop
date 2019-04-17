@@ -1,8 +1,7 @@
 from django.db import models
-from utils.abstract_model import AbstractModel
 from user.models import User
 
-class Order(AbstractModel):
+class Order(models.Model):
 
 	total_price = models.DecimalField(max_digits=6, decimal_places=2)
 	is_returned = models.BooleanField()

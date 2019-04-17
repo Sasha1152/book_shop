@@ -1,13 +1,13 @@
-from django.shortcuts import render
 import json
 from django.http import HttpResponse
 from .models import Book
 
 
-def get_book_list(request):
-    book_list = Book.objects.all()
-    # output = (', ').join([i.title for i in book_list])
-    return HttpResponse(book_list[0].title)
+
+def get_books_list(request):
+    books_list = Book.objects.all()
+    output = (', ').join([i.title for i in books_list])
+    return HttpResponse(output)
 
 
 def create_book(request):

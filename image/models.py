@@ -1,6 +1,5 @@
 from django.db import models
-from utils.abstract_model import AbstractModel
 
-class Image(AbstractModel):
+class Image(models.Model):
 
 	image = models.ImageField(blank=True)

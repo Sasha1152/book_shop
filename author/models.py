@@ -1,9 +1,8 @@
 from django.db import models
-from utils.abstract_model import AbstractModel
 from image.models import Image
 
 
-class Author(AbstractModel):
+class Author(models.Model):
 	first_name = models.CharField(max_length=64, blank=True)
 	last_name = models.CharField(max_length=64, blank=True)
 	biography = models.TextField()
