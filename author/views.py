@@ -1,13 +1,13 @@
 import json
 from django.http import HttpResponse
+from django.shortcuts import render
 from .models import Author
 
 
 
 def get_authors_list(request):
     authors_list = Author.objects.all()
-    output = (' | ').join(i.first_name for i in authors_list)
-    return HttpResponse(output)
+    return render(request, 'authors.html', {'authors': authors_list})
 
 
 def create_author(request):

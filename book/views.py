@@ -1,13 +1,19 @@
 import json
 from django.http import HttpResponse
+from django.shortcuts import render
 from .models import Book
 
 
 
 def get_books_list(request):
     books_list = Book.objects.all()
-    output = (' | ').join(i.title for i in books_list)
-    return HttpResponse(output)
+    return render(request, 'books.html', {'books': books_list})
+
+
+def get_book(request):
+    data = json.loads(request.body)
+    book = Book.objects.get(id=data['id'])
+    return HttpResponse(book)
 
 
 def create_book(request):
@@ -24,16 +30,6 @@ def delete_book(request):
         return HttpResponse(f'{request.method} method activated! Deleted book where id={data["id"]}.')
     except Book.DoesNotExist:
         return HttpResponse(f'Sorry, but book where id={data["id"]} does not exist')
-
-
-def get_book(request):
-    data = json.loads(request.body)
-    try:
-        book = Book.objects.get(id=data['id'])
-    except Book.DoesNotExist:
-        return HttpResponse(f'Sorry, but book where id={data["id"]} does not exist')
-    else:
-        return HttpResponse(f'{request.method} method activated! You chose book #{book.id}:"{book.title}"')
 
 
 def update_book(request):
