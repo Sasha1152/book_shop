@@ -10,6 +10,11 @@ def get_authors_list(request):
     return render(request, 'authors.html', {'authors': authors_list})
 
 
+def get_author(request, id):
+    author = Author.objects.get(id=id)
+    return HttpResponse(author)
+
+
 def create_author(request):
     data = json.loads(request.body)
     new_author = Author.objects.create(**data)
@@ -24,16 +29,6 @@ def delete_author(request):
         return HttpResponse(f'{request.method} method activated! Deleted author where id={data["id"]}.')
     except Author.DoesNotExist:
         return HttpResponse(f'Sorry, but author where id={data["id"]} does not exist')
-
-
-def get_author(request):
-    data = json.loads(request.body)
-    try:
-        author = Author.objects.get(id=data['id'])
-    except Author.DoesNotExist:
-        return HttpResponse(f'Sorry, but author where id={data["id"]} does not exist')
-    else:
-        return HttpResponse(f'{request.method} method activated! You chose author #{author.id}:"{author.title}"')
 
 
 def update_author(request):

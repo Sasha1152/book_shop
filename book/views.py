@@ -10,11 +10,9 @@ def get_books_list(request):
     return render(request, 'books.html', {'books': books_list})
 
 
-def get_book(request):
-    data = json.loads(request.body)
-    book = Book.objects.get(id=data['id'])
+def get_book(request, id):
+    book = Book.objects.get(id=id)
     return HttpResponse(book)
-
 
 def create_book(request):
     data = json.loads(request.body)

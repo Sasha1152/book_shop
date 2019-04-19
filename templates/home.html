@@ -18,10 +18,12 @@
           <tr>
             <th>Book</th>
             <th>Author</th>
+            <th>Year</th>
             <th>Genre</th>
+            <th>Pages</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>to order</th>
+            <th>add to wish list</th>
           </tr>
         </thead>
 
@@ -29,15 +31,28 @@
         {% for book in books %}
           <tr>
             <td>
-              <a href="{% url 'book' %}">{{ book.title }}</a>
+              <a href="{% url 'book' book.id %}">{{ book.title }}</a>
             </td>
             <td>
-              <a href="{% url 'home' %}">{{ book.author.first_name }} {{ book.author.last_name }}</a>
+              <a href="{% url 'author' book.author.id %}">{{ book.author.first_name }} {{ book.author.last_name }}</a>
             </td>
+            <td>{{ book.year }}</td>
             <td>{{ book.genre }}</td>
+            <td>{{ book.pages }}</td>
             <td>{{ book.price }}</td>
-            <td><input type="number" style="width: 3em" value="1" min="1" max="12" pattern="[1-9]{2}" required></td>
-            <td><input type="checkbox"></td>
+            <td>
+              <input name="somename"
+                     oninput="javascript: if (this.value.length > this.maxLength)
+                              this.value = this.value.slice(0, this.maxLength);"
+                     type = "number"
+                     style="width: 3em"
+                     value="1"
+                     min="1"
+                     max="12"
+                     maxlength = "2"
+              />
+            </td>
+            <td><input type="checkbox" style="margin: auto"></td>
           </tr>
         {% endfor %}
       </tbody>
