@@ -7,10 +7,8 @@
     <li class="breadcrumb-item active">{{ book }}</li>
   </ol>
   {% load staticfiles %}
-  <img src="{{ book.image.url }}" alt="{{ book.title }}" width="100" title="{{ book.title }}"/><br>
-  <img src="{% static 'images/becoming.jpg' %}" alt="{{ book.title }}" width="100" title="{{ book.title }}"/><br>
-  <img src="/image/images/becoming.jpg" alt="{{ book.title }}" width="50" title="{{ book.title }}"/><br>
-  <img src="/static/images/becoming.jpg" alt="{{ book.title }}" width="50" title="{{ book.title }}"/><br>
-  Author: {{ book.author.first_name}} {{ book.author.last_name}}
+  <img src="{{ book.image.image.url }}" alt="{{ book.title }}" width="100" title="{{ book.title }}"/><br>
+  Author: {{ book.author.first_name}} {{ book.author.last_name}}<br>
+  {{ book.description }}
 
 {% endblock %}
