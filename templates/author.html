@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block author %}
+    <ol class="breadcrumb my-4">
+      <li class="breadcrumb-item active">{{ author.first_name }} {{ author.last_name }}</li>
+    </ol>
+    <img src="{{ author.image.url }}" alt="{{ author.first_name }}" width="400" title="{{ planet.name }}"/><br>
+    {{ author.image }} <br>
+    {{ author.biography }}
+
+
+{% endblock %}

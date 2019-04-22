@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block book %}
+
+  <ol class="breadcrumb my-4">
+    <li class="breadcrumb-item active">{{ book }}</li>
+  </ol>
+  {% load staticfiles %}
+  <img src="{{ book.image.url }}" alt="{{ book.title }}" width="150" title="{{ book.title }}"/><br>
+  <img src="/image/images/becoming.jpg" alt="{{ book.title }}" width="50" title="{{ book.title }}"/><br>
+  Author: {{ book.author.first_name}} {{ book.author.last_name}}
+
+{% endblock %}

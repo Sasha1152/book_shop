@@ -12,7 +12,8 @@ def get_books_list(request):
 
 def get_book(request, id):
     book = Book.objects.get(id=id)
-    return HttpResponse(book)
+    return render(request, 'book.html', {'book': book})
+
 
 def create_book(request):
     data = json.loads(request.body)

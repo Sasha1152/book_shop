@@ -12,7 +12,7 @@ def get_authors_list(request):
 
 def get_author(request, id):
     author = Author.objects.get(id=id)
-    return HttpResponse(author)
+    return render(request, 'author.html', {'author': author})
 
 
 def create_author(request):
