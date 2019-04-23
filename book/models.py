@@ -15,7 +15,6 @@ class Book(models.Model):
 	author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True)
 	image = models.ForeignKey(Image, on_delete=models.CASCADE, null=True, blank=True)
 	genre = models.ManyToManyField(Genre, null=True, blank=True)
-	print('MYPRINT MODEL: ', price)
 
 
 	def __str__(self):
