@@ -4,11 +4,16 @@
 {% block book %}
 
   <ol class="breadcrumb my-4">
-    <li class="breadcrumb-item active">{{ book }}</li>
+    <li class="breadcrumb-item active"><h3 style="color: blue">{{ book }}</h3></li>
   </ol>
-  {% load staticfiles %}
-  <img src="{{ book.image.image.url }}" alt="{{ book.title }}" width="100" title="{{ book.title }}"/><br>
-  Author: {{ book.author.first_name}} {{ book.author.last_name}}<br>
-  {{ book.description }}
+  <h5>Author: {{ book.author.first_name}} {{ book.author.last_name}}</h5><br>
+  <img src="{{ book.image.image.url }}"
+       alt="{{ book.title }}"
+       width="200"
+       title="{{ book.title }}"
+       align="left"
+       style="margin: 0px 20px 10px 0px"
+  />
+  {{ book.description | safe }}
 
 {% endblock %}

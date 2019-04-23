@@ -12,6 +12,7 @@ def get_books_list(request):
 
 def get_book(request, id):
     book = Book.objects.get(id=id)
+    print('MYPRINT VIEW: ', book.genre)
     return render(request, 'book.html', {'book': book})
 
 

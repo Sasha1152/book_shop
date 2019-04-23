@@ -29,7 +29,7 @@
         <a href="{% url 'author' book.author.id %}">{{ book.author.first_name }} {{ book.author.last_name }}</a>
       </td>
       <td>{{ book.year }}</td>
-      <td>{{ book.genre }}</td>
+      <td>{{ book.genre.genre.all }}</td>
       <td>{{ book.pages }}</td>
       <td>{{ book.price }}</td>
       <td>
