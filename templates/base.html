@@ -5,14 +5,21 @@
     <meta charset="utf-8">
     <title>Library</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style type="text/css">
+      h2, h3 {
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
-
+    <h2 align="center" style="color: blue" onclick="window.location.href = '/'">Library</h2>
     <div class="container">
 
       {% block home %} {% endblock %}
       {% block book %} {% endblock %}
       {% block author %} {% endblock %}
+      {% block orders %} {% endblock %}
+      {% block order %} {% endblock %}
 
     </div>
 

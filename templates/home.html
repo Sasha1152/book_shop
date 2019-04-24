@@ -2,7 +2,9 @@
 
 {% block home %}
 <ol class="breadcrumb my-4">
-  <li class="breadcrumb-item active">Library</li>
+  <li class="breadcrumb-item active"><h4 style="color: blue">
+    Please, choose the book and click 'submit' to add it to your order
+  </h4></li>
 </ol>
 
 <table class="table">
@@ -29,7 +31,10 @@
         <a href="{% url 'author' book.author.id %}">{{ book.author.first_name }} {{ book.author.last_name }}</a>
       </td>
       <td>{{ book.year }}</td>
-      <td>{{ book.genre.genre.all }}</td>
+      <td> {% for genre in book.genre.all %}
+             {{ genre }}<br>
+           {% endfor %}
+      </td>
       <td>{{ book.pages }}</td>
       <td>{{ book.price }}</td>
       <td>
@@ -49,4 +54,20 @@
   {% endfor %}
   </tbody>
 </table>
+<input type="submit" value="Submit" style="float: right">
+<button onclick="window.location.href = '/order'" style="float: right">Look my orders</button>
+  <h4>Filter</h4>
+  <div>
+    <b>By author:</b><br>
+    {% for author in authors %}
+      {{ author }}<input type="checkbox" style="margin: auto"><br>
+    {% endfor %}
+  </div>
+
+  <div>
+    <b>By genre:</b><br>
+    {% for genre in genres %}
+      {{ genre }}<input type="checkbox" style="margin: auto"><br>
+    {% endfor %}
+  </div>
 {% endblock %}

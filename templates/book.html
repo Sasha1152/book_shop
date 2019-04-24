@@ -6,7 +6,12 @@
   <ol class="breadcrumb my-4">
     <li class="breadcrumb-item active"><h3 style="color: blue">{{ book }}</h3></li>
   </ol>
-  <h5>Author: {{ book.author.first_name}} {{ book.author.last_name}}</h5><br>
+  <h5><b>Author: {{ book.author.first_name}} {{ book.author.last_name}},
+  Genre:
+    {% for genre in genres %}
+      {{ genre }}
+    {% endfor %}
+  </b></h5>
   <img src="{{ book.image.image.url }}"
        alt="{{ book.title }}"
        width="200"

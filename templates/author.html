@@ -2,7 +2,9 @@
 
 {% block author %}
     <ol class="breadcrumb my-4">
-        <li class="breadcrumb-item active"><h3 style="color: blue">{{ author.first_name }} {{ author.last_name }}</h3></li>
+        <li class="breadcrumb-item active">
+            <h3 style="color: blue">{{ author.first_name }} {{ author.last_name }}</h3>
+        </li>
     </ol>
     <img src="{{ author.image.image.url }}"
        alt="{{ author.last_name }}"

@@ -1,12 +1,16 @@
 import json
+from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Order
 
 
 def get_orders_list(request):
     orders_list = Order.objects.all()
-    output = ' | '.join(str(obj.id) for obj in orders_list)
-    return HttpResponse(output)
+    return render(request, 'orders.html', {'orders': orders_list})
+
+def get_order(request, id):
+    order = Order.objects.get(id=id)
+    return render(request, 'order.html', {'order': order})
 
 
 def create_order(request):
@@ -24,15 +28,6 @@ def delete_order(request):
     except Order.DoesNotExist:
         return HttpResponse(f'Sorry, but order where id={data["id"]} does not exist')
 
-
-def get_order(request):
-    data = json.loads(request.body)
-    try:
-        order = Order.objects.get(id=data['id'])
-    except Order.DoesNotExist:
-        return HttpResponse(f'Sorry, but order where id={data["id"]} does not exist')
-    else:
-        return HttpResponse(f'{request.method} method activated! You chose order #{order.id}:"{order.title}"')
 
 
 def update_order(request):

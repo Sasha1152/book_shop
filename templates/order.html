@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block order %}
+
+    <ol class="breadcrumb my-4">
+        <li class="breadcrumb-item active"><h3 style="color: blue">Order #{{ order.id }}</h3></li>
+    </ol>
+
+    Order's number: {{ order.id }}<br>
+    Total price: {{ order.total_price }}<br>
+    Is returned: {{ order.is_returned }}<br>
+    User: {{ order.user_id.first_name }}
+
+{% endblock %}

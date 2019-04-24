@@ -14,7 +14,7 @@ class Book(models.Model):
 	quantity = models.PositiveSmallIntegerField(max_length=2, null=True, default=1)
 	author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True)
 	image = models.ForeignKey(Image, on_delete=models.CASCADE, null=True, blank=True)
-	genre = models.ManyToManyField(Genre, null=True, blank=True)
+	genre = models.ManyToManyField(Genre, null=True, blank=True, related_name='genre')
 
 
 	def __str__(self):
