@@ -8,6 +8,7 @@ def get_orders_list(request):
     orders_list = Order.objects.all()
     return render(request, 'orders.html', {'orders': orders_list})
 
+
 def get_order(request, id):
     order = Order.objects.get(id=id)
     return render(request, 'order.html', {'order': order})

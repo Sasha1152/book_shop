@@ -56,18 +56,23 @@
 </table>
 <input type="submit" value="Submit" style="float: right">
 <button onclick="window.location.href = '/order'" style="float: right">Look my orders</button>
-  <h4>Filter</h4>
+
+
+<form action=" " method="get">
   <div>
     <b>By author:</b><br>
     {% for author in authors %}
-      {{ author }}<input type="checkbox" style="margin: auto"><br>
+      {{ author }}<input type="checkbox" style="margin: auto" name="author_id" value="{{ author.id }}"><br>
     {% endfor %}
   </div>
 
   <div>
     <b>By genre:</b><br>
     {% for genre in genres %}
-      {{ genre }}<input type="checkbox" style="margin: auto"><br>
+      {{ genre }}<input type="checkbox" style="margin: auto" name="genre_id" value="{{ genre.id }}"><br>
     {% endfor %}
   </div>
+   <input type="submit" value="filter">
+</form>
+
 {% endblock %}
