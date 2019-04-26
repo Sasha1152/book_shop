@@ -2,9 +2,12 @@
 
 {% block home %}
 <ol class="breadcrumb my-4">
-  <li class="breadcrumb-item active"><h4 style="color: blue">
+  <li class="breadcrumb-item active">
+    <h5 style="color: blue">
     Please, choose the book and click 'submit' to add it to your order
-  </h4></li>
+    </h5>
+    <div align="right">My wallet: {{ user.wallet }}$</div>
+  </li>
 </ol>
 
 <table class="table">
@@ -17,7 +20,7 @@
       <th>Pages</th>
       <th>Price</th>
       <th>Quantity</th>
-      <th>add to wish list</th>
+      <th>add to order</th>
     </tr>
   </thead>
 
@@ -38,7 +41,7 @@
       <td>{{ book.pages }}</td>
       <td>{{ book.price }}</td>
       <td>
-        <input name="somename"
+        <input name="books_quantity"
                oninput="javascript: if (this.value.length > this.maxLength)
                         this.value = this.value.slice(0, this.maxLength);"
                type = "number"
@@ -54,6 +57,7 @@
   {% endfor %}
   </tbody>
 </table>
+<div align="right">Total price: {{ book.price }}</div>
 <input type="submit" value="Submit" style="float: right">
 <button onclick="window.location.href = '/order'" style="float: right">Look my orders</button>
 

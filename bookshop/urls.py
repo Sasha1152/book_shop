@@ -24,8 +24,6 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage, name='home'),
-    # re_path(r'(/<int:author_id>)*', views.homepage, name='home'),
-    # path('filter/<int:author_id>/', views.filter_by_author, name='filter'),
     path('book/', include('book.urls')),
     path('author/', include('author.urls')),
     path('genre/', include('genre.urls')),
