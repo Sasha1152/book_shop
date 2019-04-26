@@ -10,55 +10,61 @@
   </li>
 </ol>
 
-<table class="table">
-  <thead class="thead-inverse">
-    <tr>
-      <th>Book</th>
-      <th>Author</th>
-      <th>Year</th>
-      <th>Genre</th>
-      <th>Pages</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>add to order</th>
-    </tr>
-  </thead>
 
-  <tbody>
-  {% for book in books %}
-    <tr>
-      <td>
-        <a href="{% url 'book' book.id %}">{{ book.title }}</a>
-      </td>
-      <td>
-        <a href="{% url 'author' book.author.id %}">{{ book.author.first_name }} {{ book.author.last_name }}</a>
-      </td>
-      <td>{{ book.year }}</td>
-      <td> {% for genre in book.genre.all %}
-             {{ genre }}<br>
-           {% endfor %}
-      </td>
-      <td>{{ book.pages }}</td>
-      <td>{{ book.price }}</td>
-      <td>
-        <input name="books_quantity"
-               oninput="javascript: if (this.value.length > this.maxLength)
-                        this.value = this.value.slice(0, this.maxLength);"
-               type = "number"
-               style="width: 3em"
-               value="1"
-               min="1"
-               max="12"
-               maxlength = "2"
-        />
-      </td>
-      <td><input type="checkbox" style="margin: auto"></td>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
-<div align="right">Total price: {{ book.price }}</div>
-<input type="submit" value="Submit" style="float: right">
+<form action="/suborder/create " method="get">
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Book</th>
+        <th>Author</th>
+        <th>Year</th>
+        <th>Genre</th>
+        <th>Pages</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>add to order</th>
+      </tr>
+    </thead>
+
+
+    <tbody>
+    {% for book in books %}
+      <tr>
+        <td>
+          <a href="{% url 'book' book.id %}">{{ book.title }}</a>
+        </td>
+        <td>
+          <a href="{% url 'author' book.author.id %}">{{ book.author.first_name }} {{ book.author.last_name }}</a>
+        </td>
+        <td>{{ book.year }}</td>
+        <td> {% for genre in book.genre.all %}
+               {{ genre }}<br>
+             {% endfor %}
+        </td>
+        <td>{{ book.pages }}</td>
+        <td>{{ book.price }}</td>
+        <td>
+          <input name="books_quantity"
+                 oninput="javascript: if (this.value.length > this.maxLength)
+                          this.value = this.value.slice(0, this.maxLength);"
+                 type = "number"
+                 style="width: 3em"
+                 value="1"
+                 min="1"
+                 max="12"
+                 maxlength = "2"
+          />
+        </td>
+        <td><input type="checkbox" style="margin: auto" name="book_id" value="{{ book.id }} {{book.name}}"></td>
+      </tr>
+
+    {% endfor %}
+    </tbody>
+  </table>
+    <input type="submit" value="Create order" style="float: right">
+</form>
+
+<div align="center">Total price: {{ book.price }}</div><br>
 <button onclick="window.location.href = '/order'" style="float: right">Look my orders</button>
 
 
@@ -66,7 +72,7 @@
   <div>
     <b>By author:</b><br>
     {% for author in authors %}
-      {{ author }}<input type="checkbox" style="margin: auto" name="author_id" value="{{ author.id }}"><br>
+      {{ author }}<input type="checkbox" style="margin: auto" name="author_id[]" value="{{ author.id }}"><br>
     {% endfor %}
   </div>
 

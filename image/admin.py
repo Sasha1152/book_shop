@@ -7,7 +7,7 @@ from .models import Image
 class ImageAdmin(admin.ModelAdmin):
 
     def image_tag(self, obj):
-        return format_html('<img src="{}" />'.format('image/images/foto.png'))
+        return format_html('<img src="{}" />'.format('static/images/foto.png'))
 
     image_tag.short_description = 'Image'
 

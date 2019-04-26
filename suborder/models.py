@@ -6,7 +6,7 @@ class Suborder(models.Model):
 
 	id = models.AutoField(primary_key=True)
 	quantity = models.PositiveSmallIntegerField(max_length=2)
-	is_returned = models.BooleanField()
+	is_returned = models.BooleanField(default=False)
 	order_date = models.DateField(auto_now_add=True)
 	book_id = models.ForeignKey(Book, on_delete=models.CASCADE, null=True)
 	order_id = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
