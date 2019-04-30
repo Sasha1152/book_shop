@@ -56,6 +56,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+
+
 ROOT_URLCONF = 'bookshop.urls'
 
 TEMPLATES = [
