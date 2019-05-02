@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'author',
     'book',
+    'cart',
     'genre',
     'image',
     'order',

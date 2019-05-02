@@ -24,7 +24,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage, name='home'),
-    path('cart/', views.show_cart, name='cart'),
+    path('cart/', include('cart.urls')),
     path('book/', include('book.urls')),
     path('author/', include('author.urls')),
     path('genre/', include('genre.urls')),
