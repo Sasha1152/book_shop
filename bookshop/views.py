@@ -29,7 +29,6 @@ def homepage(request):
         for genre in book.genre.all():
             if genre not in genres:
                 genres.append(genre)
-    # print("MYPRINT: ", request.GET.get('author_id'))
     # request.session.clear()
     if request.GET:
         if request.GET.get('author_id'):
@@ -38,18 +37,26 @@ def homepage(request):
         if request.GET.get('genre_id'):
             genre_id = request.GET.getlist('genre_id')
             books = books.filter(genre__id__in=genre_id)
+        if request.GET.get('book_id'):
+            try:
+                list_books_id = request.session['books_in_my_cart']
+                list_books_id.extend(request.GET.getlist('book_id'))
+                request.session['books_in_my_cart'] = list_books_id
+            except KeyError:
+                request.session['books_in_my_cart'] = request.GET.getlist('book_id')
 
+    # print('MYPRINT end function homepage: ', request.session['books_in_my_cart'])
     return render(request, 'home.html', {'books': books, 'authors': authors, 'genres': genres})
 
+
 def show_cart(request):
-    # print("MYPRINT: ", request.GET.get('book_id'))
     books = Book.objects.all()
-    if request.GET.get('book_id'):
-        request.session['books_in_my_cart'] = request.GET.getlist('book_id')
     session_data = request.session.items()
     books_in_my_cart = request.session.get('books_in_my_cart')
-    print("MYPRINT2: ", books_in_my_cart)
-    books = books.filter(id__in=books_in_my_cart)
+    # print('MYPRINT books_in_my_cart: ', books_in_my_cart)
+    try:
+        books = books.filter(id__in=books_in_my_cart)
+    except TypeError:
+        books = None
 
-    print("MYPRINT3: ", books)
     return render(request, 'cart.html', {'session_data': session_data, 'books': books})

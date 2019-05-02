@@ -1,8 +1,4 @@
-def foo(*args):
-	if args:
-		print(args)
-	else:
-		print('nothing')
+s1 = (1, 2, 3)
+s2 = (4, 5, 6)
 
-foo()
-foo(2, 3, 4)
+s1.update(s2)
