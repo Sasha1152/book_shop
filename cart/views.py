@@ -3,19 +3,45 @@ from django.shortcuts import render
 from book.models import Book
 
 
-def add_book_to_the_cart(request):
+# TODO make each method more CRUDable
+def add_books_to_the_cart(request):
     if request.GET.get('book_id'):
         try:
-            list_books_id = request.session['books_in_my_cart']
-            list_books_id.extend(request.GET.getlist('book_id'))
+            set_books_id = set(request.session['books_in_my_cart'])
+            set_books_id.update(set(request.GET.getlist('book_id')))
+            list_books_id = list(set_books_id)
             request.session['books_in_my_cart'] = list_books_id
         except KeyError:
-            request.session['books_in_my_cart'] = request.GET.getlist('book_id')
+            book_set = set(request.GET.getlist('book_id'))
+            request.session['books_in_my_cart'] = list(book_set)
     return HttpResponseRedirect('/')
 
 
-def delete_book_from_the_cart(request):
-   pass
+# def add_one_book(request, book_id):
+#     try:
+#         set_books_id = set(request.session['books_in_my_cart'])
+#         set_books_id.update(str(book_id))
+#         list_books_id = list(set_books_id)
+#         request.session['books_in_my_cart'] = list_books_id
+#     except KeyError:
+#         book_id = str(book_id)
+#         request.session['books_in_my_cart'] = book_id
+#     return HttpResponseRedirect('/')
+
+
+def clear_cart(request):
+    try:
+        del request.session['books_in_my_cart']
+        return HttpResponseRedirect('/cart')
+    except KeyError:
+        return HttpResponseRedirect('/cart')
+
+
+def delete_book_from_the_cart(request, book_id):
+    books_list = request.session['books_in_my_cart']
+    books_list.remove(str(book_id))
+    request.session['books_in_my_cart'] = books_list
+    return HttpResponseRedirect('/cart')
 
 
 def show_cart(request):

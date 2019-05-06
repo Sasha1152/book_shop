@@ -6,13 +6,13 @@ def homepage(request):
     books = Book.objects.all()
     authors = []
     genres = []
+    # TODO make one query to avoid n+1 issue
     for book in books:
         if book.author not in authors:
             authors.append(book.author)
         for genre in book.genre.all():
             if genre not in genres:
                 genres.append(genre)
-    # request.session.clear()
     if request.GET:
         if request.GET.get('author_id'):
             author_id = request.GET.getlist('author_id')

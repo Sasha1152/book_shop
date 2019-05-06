@@ -10,7 +10,7 @@
   </li>
 </ol>
 
-<form action="/cart/add_book " method="get" >
+<form action="/cart/add_books " method="get" >
   <table class="table">
     <thead class="thead-inverse">
       <tr>
@@ -20,7 +20,7 @@
         <th>Genre</th>
         <th>Pages</th>
         <th>Price</th>
-        <th>Quantity</th>
+        <th>In stock</th>
         <th>add to cart</th>
       </tr>
     </thead>
@@ -42,18 +42,7 @@
         </td>
         <td>{{ book.pages }}</td>
         <td>{{ book.price }}</td>
-        <td>
-          <input name="books_quantity"
-                 oninput="javascript: if (this.value.length > this.maxLength)
-                          this.value = this.value.slice(0, this.maxLength);"
-                 type = "number"
-                 style="width: 3em"
-                 value="1"
-                 min="1"
-                 max="12"
-                 maxlength = "2"
-          />
-        </td>
+        <td>{{ book.quantity }}</td>
         <td><input type="checkbox" style="margin: auto" name="book_id" value="{{ book.id }}"></td>
       </tr>
 
@@ -70,14 +59,14 @@
 
 
 <form action=" " method="get">
-  <div>
+  <div align="left">
     <b>By author:</b><br>
     {% for author in authors %}
       {{ author }}<input type="checkbox" style="margin: auto" name="author_id" value="{{ author.id }}"><br>
     {% endfor %}
   </div>
 
-  <div>
+  <div align="left">
     <b>By genre:</b><br>
     {% for genre in genres %}
       {{ genre }}<input type="checkbox" style="margin: auto" name="genre_id" value="{{ genre.id }}"><br>

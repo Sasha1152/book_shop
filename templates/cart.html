@@ -42,7 +42,19 @@
         </td>
         <td>{{ book.pages }}</td>
         <td>{{ book.price }}</td>
-        <td>{{ book.quantity }}</td>
+        <td>
+          <input name="books_quantity"
+                 oninput="javascript: if (this.value.length > this.maxLength)
+                          this.value = this.value.slice(0, this.maxLength);"
+                 type = "number"
+                 style="width: 3em"
+                 value="1"
+                 min="1"
+                 max="12"
+                 maxlength = "2"
+          />
+        </td>
+        <td><a href="{% url 'delete_book' book.id %}" style="float: right">delete</a></td>
       </tr>
 
     {% endfor %}
@@ -54,6 +66,7 @@
 
 <div align="center">Total price: {{ book.price }}</div><br>
 <button onclick="window.location.href = '/order'" style="float: right">Look my orders</button>
+<button onclick="window.location.href = '/cart/clear_cart'" style="float: right">Clear the cart</button>
 
 {{ session_data }}
 
