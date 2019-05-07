@@ -9,13 +9,13 @@ def get_suborders_list(request):
     return HttpResponse(output)
 
 
-def create_suborder(request):
+def create(request):
     data = json.loads(request.body)
     new_suborder = Suborder.objects.create(**data)
     return HttpResponse(f'{request.method} method activated! Added new suborder where id={new_suborder.id}.')
 
 
-def delete_suborder(request):
+def delete(request):
     data = json.loads(request.body)
     try:
         suborder = Suborder.objects.get(id=data['id'])
@@ -25,7 +25,7 @@ def delete_suborder(request):
         return HttpResponse(f'Sorry, but suborder where id={data["id"]} does not exist')
 
 
-def get_suborder(request):
+def retrieve(request):
     data = json.loads(request.body)
     try:
         suborder = Suborder.objects.get(id=data['id'])
@@ -35,7 +35,7 @@ def get_suborder(request):
         return HttpResponse(f'{request.method} method activated! You chose suborder #{suborder.id}:"{suborder.title}"')
 
 
-def update_suborder(request):
+def update(request):
     data = json.loads(request.body)
     try:
         suborder = Suborder.objects.get(id=data['id'])

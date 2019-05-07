@@ -9,18 +9,18 @@ def get_orders_list(request):
     return render(request, 'orders.html', {'orders': orders_list})
 
 
-def get_order(request, id):
+def retrieve(request, id):
     order = Order.objects.get(id=id)
     return render(request, 'order.html', {'order': order})
 
 
-def create_order(request):
+def create(request):
     data = json.loads(request.body)
     new_order = Order.objects.create(**data)
     return HttpResponse(f'{request.method} method activated! Added new order where id={new_order.id}.')
 
 
-def delete_order(request):
+def delete(request):
     data = json.loads(request.body)
     try:
         order = Order.objects.get(id=data['id'])
@@ -30,8 +30,7 @@ def delete_order(request):
         return HttpResponse(f'Sorry, but order where id={data["id"]} does not exist')
 
 
-
-def update_order(request):
+def update(request):
     data = json.loads(request.body)
     try:
         order = Order.objects.get(id=data['id'])

@@ -10,13 +10,13 @@ def get_users_list(request):
     return HttpResponse(output)
 
 
-def create_user(request):
+def create(request):
     data = json.loads(request.body)
     new_user = User.objects.create(**data)
     return HttpResponse(f'{request.method} method activated! Added new user where id={new_user.id}.')
 
 
-def delete_user(request):
+def delete(request):
     data = json.loads(request.body)
     try:
         user = User.objects.get(id=data['id'])
@@ -26,7 +26,7 @@ def delete_user(request):
         return HttpResponse(f'Sorry, but user where id={data["id"]} does not exist')
 
 
-def get_user(request):
+def retrieve(request):
     data = json.loads(request.body)
     try:
         user = User.objects.get(id=data['id'])

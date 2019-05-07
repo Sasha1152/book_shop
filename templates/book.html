@@ -12,7 +12,7 @@
       {{ genre }}
     {% endfor %}
   </b></h5>
-  <button><a href = "{% url 'add_book' book.id %}" style="align: left">Add to my cart</a></button>
+  <button><a href = "{% url 'create' book.id %}" style="align: left">Add to my cart</a></button>
   <button onclick="window.location.href = '/cart'" style="align: left">My cart</button><br>
   <img src="{{ book.image.image.url }}"
        alt="{{ book.title }}"
