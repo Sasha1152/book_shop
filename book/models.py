@@ -8,8 +8,8 @@ class Book(models.Model):
 
 	title = models.CharField(max_length=50)
 	description = models.TextField(blank=True)
-	year = models.PositiveSmallIntegerField(max_length=4)
-	pages = models.PositiveSmallIntegerField(max_length=5)
+	year = models.PositiveSmallIntegerField(max_length=4, null= True, blank=True)
+	pages = models.PositiveSmallIntegerField(max_length=5, null= True, blank=True)
 	price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
 	quantity = models.PositiveSmallIntegerField(max_length=2, null=True, default=1)
 	author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True)

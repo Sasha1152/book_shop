@@ -1,6 +1,13 @@
-s1 = {1, 2, 3}
-s2 = {4, 5, 6}
+fullname = 'Firstname Lastname'
+#
+# first_name = ''
+# last_name = ''
+# for letter in fullname:
+# 	while letter:
+# 		first_name +=
 
-s1.update(s2)
+txt = "welcome to the jungle"
 
-print(s1)
+x = txt.split(maxsplit=1)
+
+print(x)

@@ -32,6 +32,7 @@ urlpatterns = [
     path('suborder/', include('suborder.urls')),
     path('user/', include('user.urls')),
     path('image/', include('image.urls')),
+    path('import_books/', views.import_books_from_xlsx, name='import_books'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

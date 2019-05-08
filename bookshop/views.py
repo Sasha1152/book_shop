@@ -1,6 +1,10 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from book.models import Book
 from datetime import datetime
+from openpyxl import load_workbook
+from author.models import Author
+from genre.models import Genre
 
 
 # def homepage(request):
@@ -48,3 +52,35 @@ def homepage(request):
     end_time = datetime.now()
     print('Duration: {}'.format(end_time - start_time))
     return render(request, 'home.html', {'books': books, 'authors': authors, 'genres': genres})
+
+
+def import_books_from_xlsx(request):
+    workbook = load_workbook('utils/booklist.xlsx')
+
+    sheet = workbook['Sheet1']
+
+    book = {}
+    author = {}
+    authors = Author.objects.all()
+    for i in range(2, 10):
+        book['title'] = sheet['b' + str(i)].value
+        genre = sheet['c' + str(i)].value.lower()
+
+        author_fullname = sheet['e' + str(i)].value
+        if author_fullname:
+            author_fullname = sheet['e' + str(i)].value.split(maxsplit=1)
+            author['first_name'] = author_fullname[0]
+            author['last_name'] = author_fullname[1]
+        else:
+            continue
+
+        price = sheet['h' + str(i)].value
+        if price[0] == '$':
+            book['price'] = sheet['h' + str(i)].value[1:]
+        else:
+            book['price'] = price
+
+        if author['first_name'] not in authors.filter(first_name='first_name') and author['last_name'] not in authors.filter(last_name='last_name'):
+            Author.objects.create(first_name=author['first_name'], last_name=author['last_name'])
+
+    return HttpResponseRedirect('/')
