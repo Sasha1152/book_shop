@@ -13,6 +13,15 @@
   </head>
   <body>
     <h2 align="center" style="color: blue" onclick="window.location.href = '/'">Library</h2>
+    <button onclick="window.location.href = '/logout'" style="float: right">Logout</button>
+
+    {% if user.is_authenticated %}
+      <h4 style="float: right">{{ user.username }}</h4>
+    {% else %}
+      <button onclick="window.location.href = '/login'" style="float: right">Log in</button>
+      <button onclick="window.location.href = '/signup'" style="float: right">Sign up</button>
+    {% endif %}
+
     <div class="container">
 
       {% block home %} {% endblock %}
@@ -20,6 +29,8 @@
       {% block author %} {% endblock %}
       {% block orders %} {% endblock %}
       {% block order %} {% endblock %}
+      {% block signup %} {% endblock %}
+      {% block login %} {% endblock %}
 
     </div>
 

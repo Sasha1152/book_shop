@@ -19,6 +19,10 @@ from . import views
 from django.conf.urls.static import static
 from django.conf import settings
 
+from user.views import signup as user_signup
+from user.views import loginuser as user_login
+from django.contrib.auth import views as auth_views
+
 
 
 urlpatterns = [
@@ -33,6 +37,9 @@ urlpatterns = [
     path('user/', include('user.urls')),
     path('image/', include('image.urls')),
     path('import_books/', views.import_books_from_xlsx, name='import_books'),
+    path('signup/', user_signup, name='signup'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('login/', user_login, name='login'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,5 +1,9 @@
 import json
 from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
+
+from .forms import SignUpForm
 from .models import User
 
 
@@ -8,6 +12,22 @@ def get_users_list(request):
     users_list = User.objects.all()
     output = (' | ').join(i.email for i in users_list)
     return HttpResponse(output)
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('/')
+    else:
+        form = SignUpForm()
+    return render(request, 'signup.html', {'form': form})
+
+
+def loginuser(request):
+    return render(request, 'login.html')
 
 
 def create(request):
