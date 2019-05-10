@@ -1,13 +1,7 @@
-fullname = 'Firstname Lastname'
-#
-# first_name = ''
-# last_name = ''
-# for letter in fullname:
-# 	while letter:
-# 		first_name +=
+a = 'Firstname Lastname ssdgg sgggsg'
+b = a.split(maxsplit=1)
 
-txt = "welcome to the jungle"
 
-x = txt.split(maxsplit=1)
-
-print(x)
+print(a)
+print(b[0])
+print(b[1])
