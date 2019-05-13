@@ -57,8 +57,9 @@
 <button onclick="window.location.href = '/order'" style="float: right">My orders</button><br>
 <button onclick="window.location.href = '/cart'" style="float: right">My cart</button>
 
+{% endblock %}
 
-
+{% block filter%}
 <form action=" " method="get">
   <div align="left">
     <b>By author:</b><br>
@@ -76,4 +77,4 @@
    <input type="submit" value="filter">
 </form>
 
-{% endblock %}
+{% endblock filter%}

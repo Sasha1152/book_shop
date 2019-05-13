@@ -8,14 +8,19 @@
 
 {% block login %}
 
-
+Username: {{ user }}, e-mail: {{ user.email }}
             <form method="post" novalidate>
               {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="btn btn-primary btn-block"><h2>Log in</h2></button>
             </form>
 
-        <div class="text-center py-2">
+
+
+
+
+
+<div class="text-center py-2">
           <small>
             <a href="#" class="text-muted">Forgot your password?</a>
           </small>

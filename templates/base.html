@@ -22,6 +22,10 @@
       <button onclick="window.location.href = '/signup'" style="float: right">Sign up</button>
     {% endif %}
 
+    <div style="position:absolute">
+    {% block filter %} {% endblock filter %}
+    </div>
+
     <div class="container">
 
       {% block home %} {% endblock %}

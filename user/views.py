@@ -27,6 +27,7 @@ def signup(request):
 
 
 def loginuser(request):
+
     return render(request, 'login.html')
 
 
